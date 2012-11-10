@@ -30,7 +30,7 @@ function loadUsers(){
 # Add a user to the datastore. Returns nothing
 function addUser($name, $points, $achievements = array()){
   $existing_users = loadUsers();
-  $existing_users[] = array($name, $points, $achievements);
+  $existing_users[] = array("name"=>$name, "points"=>$points, "achievements"=>explode(',',$achievements));
   saveUsers($existing_users);
 
 }
