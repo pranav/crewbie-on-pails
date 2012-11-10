@@ -51,3 +51,16 @@ div.progressbarinner {
   height:28px;
   border-radius:5px;
 }
+
+
+div.admin .user form p {
+  margin:15px 0;
+  text-align:right;
+}
+
+div.admin .user form p input {
+  font-size:14px;
+  padding:3px;
+  float:right;
+  margin-left:15px;
+}
