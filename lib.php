@@ -53,5 +53,17 @@ function editUser($name, $points, $achievements = array()){
   }
   saveUsers($users);
 }
+
+# Gets an individual user based on name
+function getUser($name){
+  $users = loadUsers();
+  $i = 0;
+  for(;$i < count($users); $i++){
+    if($users[$i]->name == $name)
+      break;
+  }
+  return $users[$i];
+}
+
 ?>
 
