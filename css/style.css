@@ -26,7 +26,7 @@ div.header h1 a {
 }
 
 body {
-  background:#eee;
+  background:#eee url('/img/bg.png');
 }
 
 div.container {
