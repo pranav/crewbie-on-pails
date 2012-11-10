@@ -20,7 +20,8 @@ div.header h1 {
 }
 
 div.header h1 a {
-  color:black;
+  color:white;
+  font-weight:bold;
   text-decoration:none;
 }
 
