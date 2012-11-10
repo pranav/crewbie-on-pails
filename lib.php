@@ -37,7 +37,7 @@ function addUser($name, $points, $achievements = array()){
 
 # Saves the array into the datastore for users
 function saveUsers($users){
-  file_put_contents("crewbie.json", json_encode($users));
+  file_put_contents("crewbie.json", json_encode(array_map("sanitize_map", $users)));
 }
 
 # This function assumes the user already exists in the datastore and will apply all attributes
@@ -63,6 +63,25 @@ function getUser($name){
       break;
   }
   return $users[$i];
+}
+
+# sanitize_map, takes either a string or an array and applies sanitize
+function sanitize_map($input){
+  if(is_array($input))
+    array_map("sanitize", $input);
+  else
+    sanitize($input);
+
+  return $input;
+}
+
+# sanitize some user input
+function sanitize($input){
+  $input = trim($input);
+  $input = strip_tags($input);
+  $input = htmlspecialchars($input);
+  $input = addslashes($input);
+  return $input;
 }
 
 ?>
