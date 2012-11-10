@@ -27,5 +27,31 @@ function loadUsers(){
   return json_decode(file_get_contents("crewbie.json"));
 }
 
+# Add a user to the datastore. Returns nothing
+function addUser($name, $points, $achievements = array()){
+  $existing_users = loadUsers();
+  $existing_users[] = array($name, $points, $achievements);
+  saveUsers($existing_users);
 
+}
+
+# Saves the array into the datastore for users
+function saveUsers($users){
+  file_put_contents("crewbie.json", json_encode($users));
+}
+
+# This function assumes the user already exists in the datastore and will apply all attributes
+function editUser($name, $points, $achievements = array()){
+  $users = loadUsers();
+  $achievements = explode(",",$achievements);
+  foreach($users as $user){
+    if($name == $user->name){
+      $user->points = $points;
+      $user->achievements = $achievements;
+      break;
+    }
+  }
+  saveUsers($users);
+}
 ?>
+
