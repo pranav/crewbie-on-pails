@@ -6,6 +6,6 @@
   </head>
   <body>
     <div class="header">
-      <h1>Crewbie on Pails</h1>
+      <h1><a href="/">Crewbie on Pails</a></h1>
     </div>
     <div class="container">
