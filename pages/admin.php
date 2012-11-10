@@ -21,8 +21,18 @@ foreach($users as $user){
   </form>
 </div>
 
-<?php }
+<?php } ?>
 
+<div class="user">
+  <h2>Add new user</h2>
+  <form action="/admin_process" method=POST>
+  <p>Name <input type="text" name="name"></p>
+  <p>Points <input type="text" name="points"></p>
+  <p>Achievements<input type="text" name="achievements" style="width:300px" ></p>
+  <input type="hidden" name="type" value="add">
+  <p><input type="submit" value="Update"></p>
+ 
+<?php
 echo "</div>";
 include('footer.php');
 
