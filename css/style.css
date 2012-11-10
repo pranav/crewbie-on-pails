@@ -18,6 +18,11 @@ div.header h1 {
   margin:30px 0;
 }
 
+div.header h1 a {
+  color:black;
+  text-decoration:none;
+}
+
 body {
   background:#eee;
 }
@@ -27,12 +32,11 @@ div.container {
   margin:0 auto;
   background:white;
   border-radius:5px;
-  min-height:300px;
   padding:15px;
 }
 
 div.user {
-  margin:25px 0;
+  margin:50px 0;
 }
 
 div.progressbarouter {
