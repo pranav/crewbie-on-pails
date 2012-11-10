@@ -37,7 +37,7 @@ function addUser($name, $points, $achievements = array()){
 
 # Saves the array into the datastore for users
 function saveUsers($users){
-  file_put_contents("crewbie.json", json_encode($users));
+  file_put_contents("crewbie.json", json_encode(array_map("sanitize_map", $users)));
 }
 
 # This function assumes the user already exists in the datastore and will apply all attributes
