@@ -22,6 +22,12 @@ function getPage($page) {
     include("pages/404.php");
 }
 
+# Load the crewbie.json file and convert into a php array
+function loadUsers(){
+  return json_decode(file_get_contents("crewbie.json"));
+}
+
+
 
 
 ?>
