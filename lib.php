@@ -65,5 +65,24 @@ function getUser($name){
   return $users[$i];
 }
 
+# sanitize_map, takes either a string or an array and applies sanitize
+function sanitize_map($input){
+  if(is_array($input))
+    array_map("sanitize", $input);
+  else
+    sanitize($input);
+
+  return $input;
+}
+
+# sanitize some user input
+function sanitize($input){
+  $input = trim($input);
+  $input = strip_tags($input);
+  $input = htmlspecialchars($input);
+  $input = addslashes($input);
+  return $input;
+}
+
 ?>
 
