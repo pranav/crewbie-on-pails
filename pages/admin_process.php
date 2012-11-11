@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+if(!isset($_SESSION['loggedin']))
+  header("Location:/");
+
 # Edit an existing user
 if($_POST['type'] == "edit" && $_POST['name'] != NULL && $_POST['points'] != NULL){
   editUser($_POST['name'], $_POST['points'], $_POST['achievements']);
