@@ -24,7 +24,15 @@ function getPage($page) {
 
 # Load the crewbie.json file and convert into a php array
 function loadUsers(){
-  return json_decode(file_get_contents("crewbie.json"));
+  global $mem;
+  $res = $mem->get("users");
+  if(!$res){
+    $users = json_decode(file_get_contents("crewbie.json"));
+    $mem->set("users", $users, 0, 0);
+    return $users;
+  } else {
+    return $res;
+  }
 }
 
 # Add a user to the datastore. Returns nothing
@@ -90,14 +98,15 @@ function sanitize($input){
 # Checks against ldap for a username match
 # Returns Full Name of person if match, otherwise returns the given name
 function ldaplookup($name){
-  #$search = `ldapsearch -x -h cluster.ldap.ccs.neu.edu -b dc=ccs,dc=neu,dc=edu uid="$name" |grep "^displayName"|sed 's/displayName: //g'`;
-  #$search = substr($search, 0, -1);
-  $users = (array)json_decode(file_get_contents("cache.json"));
-  return $users[$name];
-  #if(strlen($search) > 2)
-  #  return $search;
-  #else
-  #  return $name;
+  global $mem;
+  $res = $mem->get($name);
+  if(!$res){
+    $users = (array)json_decode(file_get_contents("cache.json"));
+    $mem->set($name, $users[$name], 0, 0);
+    return $users[$name];
+  } else {
+    return $res;
+  }
 }
 
 # Sort the crewbies by points
