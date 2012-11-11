@@ -84,5 +84,14 @@ function sanitize($input){
   return $input;
 }
 
+# Checks against ldap for a username match
+# Returns Full Name of person if match, otherwise returns the given name
+function ldaplookup($name){
+  $search = `ldapsearch -x -h cluster.ldap.ccs.neu.edu -b dc=ccs,dc=neu,dc=edu uid="$name" |grep "^displayName"|sed 's/displayName: //g'`;
+  if(strlen($search) > 2)
+    return $search;
+  else
+    return $name;
+}
 ?>
 
