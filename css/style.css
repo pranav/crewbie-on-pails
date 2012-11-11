@@ -32,7 +32,8 @@ body {
 div.container {
   width:770px;
   margin:0 auto;
-  background:white -webkit-linear-gradient(bottom, #ddd 0%, #eee 50%);
+  background:#eee;
+  background-image: -webkit-linear-gradient(bottom, #ddd 0%, #eee 50%);
   border-radius:5px;
   padding:15px;
   box-shadow:0 0 30px #000;
@@ -51,7 +52,8 @@ div.progressbarouter {
 }
 
 div.progressbarinner {
-  background:#08c;
+  background:#08c ;
+  background-image: -webkit-linear-gradient(top, #00AAFF 0%, #08c 100%);
   height:28px;
   border-radius:5px;
 }
