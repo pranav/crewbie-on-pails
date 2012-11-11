@@ -40,8 +40,8 @@ div.container {
 }
 
 div.user {
-  margin:0px 0  50px 0;
   clear:both;
+  margin:10px 0;
 }
 
 div.progressbarouter {
