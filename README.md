@@ -25,16 +25,16 @@ We store all user data in a json file. This is an array of objects.
 
 We define a crewbie as a:
 ```
-    {
-      "name":"John Doe",
-      "points":"56",
-      "achievements":["Webdev master", "Other"]
-    }
+{
+  "name":"John Doe",
+  "points":"56",
+  "achievements":["Webdev master", "Other"]
+}
 ```
 
 In Racket this would be similar to:
 ```
-    (define-struct crewbie (name points achievements))
-    (make-crewbie "John Doe" 56 ("Webdev master" "other"))
+(define-struct crewbie (name points achievements))
+(make-crewbie "John Doe" 56 ("Webdev master" "other"))
 ```
 
