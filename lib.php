@@ -37,6 +37,7 @@ function addUser($name, $points, $achievements = array()){
 
 # Saves the array into the datastore for users
 function saveUsers($users){
+  generateLDAPcache();
   file_put_contents("crewbie.json", json_encode(array_map("sanitize_map", $users)));
 }
 
@@ -89,11 +90,14 @@ function sanitize($input){
 # Checks against ldap for a username match
 # Returns Full Name of person if match, otherwise returns the given name
 function ldaplookup($name){
-  $search = `ldapsearch -x -h cluster.ldap.ccs.neu.edu -b dc=ccs,dc=neu,dc=edu uid="$name" |grep "^displayName"|sed 's/displayName: //g'`;
-  if(strlen($search) > 2)
-    return $search;
-  else
-    return $name;
+  #$search = `ldapsearch -x -h cluster.ldap.ccs.neu.edu -b dc=ccs,dc=neu,dc=edu uid="$name" |grep "^displayName"|sed 's/displayName: //g'`;
+  #$search = substr($search, 0, -1);
+  $users = (array)json_decode(file_get_contents("cache.json"));
+  return $users[$name];
+  #if(strlen($search) > 2)
+  #  return $search;
+  #else
+  #  return $name;
 }
 
 # Sort the crewbies by points
@@ -109,6 +113,15 @@ function cmp_points($a, $b){
     return strcasecmp(ldaplookup($b->name),ldaplookup($a->name));
   else
     return ($a->points < $b->points) ? -1 : 1;
+}
+
+function generateLDAPcache(){
+  $users = loadUsers();
+  $map = array();
+  foreach($users as $user){
+    $map[$user->name] = ldaplookup($user->name);
+  }
+  file_put_contents("cache.json",json_encode(generateLDAPcache()));
 }
 
 ?>
