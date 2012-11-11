@@ -77,7 +77,9 @@ function sanitize_map($input){
 
 # sanitize some user input
 function sanitize($input){
-  $input = trim($input);
+  foreach($input as $i){
+    $i = trim($input);
+  }
   $input = strip_tags($input);
   $input = htmlspecialchars($input);
   $input = addslashes($input);
@@ -93,4 +95,20 @@ function ldaplookup($name){
   else
     return $name;
 }
+
+# Sort the crewbies by points
+function sort_by_points($crewbies){
+  usort($crewbies, "cmp_points");
+  return $crewbies;
+}
+
+# Compares 2 people in terms of total point value.
+# Returns 0 if they are equal, -1 if $a is before $b and 1 if $a comes after $b
+function cmp_points($a, $b){
+  if($a->points == $b->points)
+    return 0;
+  else
+    return ($a->points < $b->points) ? -1 : 1;
+}
+
 ?>
