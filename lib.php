@@ -124,6 +124,7 @@ function cmp_points($a, $b){
     return ($a->points < $b->points) ? -1 : 1;
 }
 
+# Generate LDAP cache file in cache.json
 function generateLDAPcache(){
   $users = loadUsers();
   $map = array();
@@ -132,5 +133,4 @@ function generateLDAPcache(){
   }
   file_put_contents("cache.json",json_encode(generateLDAPcache()));
 }
-
 ?>
