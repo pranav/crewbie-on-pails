@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+if(!isset($_SESSION['loggedin'])){
+  if($_SERVER['PHP_AUTH_USER'] == ADMIN_USER && $_SERVER['PHP_AUTH_PW'] == ADMIN_PASS){
+    $_SESSION['loggedin'] = true;
+  } else {
+    header("WWW-Authenticate: Basic realm=\"Administrator Login\"");
+    die();
+  }
+}
+
 include('header.php');
 
 echo "<div class=\"admin\">";
