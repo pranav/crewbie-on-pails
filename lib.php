@@ -77,7 +77,9 @@ function sanitize_map($input){
 
 # sanitize some user input
 function sanitize($input){
-  $input = trim($input);
+  foreach($input as $i){
+    $i = trim($input);
+  }
   $input = strip_tags($input);
   $input = htmlspecialchars($input);
   $input = addslashes($input);
