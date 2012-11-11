@@ -10,7 +10,7 @@ foreach($users as $user){
   $achievements = implode(", ", $user->achievements);
 ?>
 <div class="user">
-  <h2><?=$user->name?><small><?=$achievements?></small></h2>
+  <h2><?php echo ldaplookup($user->name); ?><small><?=$achievements?></small></h2>
   <div class="progressbarouter"><div class="progressbarinner" style="width:<?=$user->points?>%"></div></div>
   <form action="/admin_process" method=POST>
   <p>Points <input type="text" name="points" value="<?=$user->points?>"></p>
@@ -26,7 +26,7 @@ foreach($users as $user){
 <div class="user">
   <h2>Add new user</h2>
   <form action="/admin_process" method=POST>
-  <p>Name <input type="text" name="name"></p>
+  <p>LDAP Username <input type="text" name="name"></p>
   <p>Points <input type="text" name="points"></p>
   <p>Achievements<input type="text" name="achievements" style="width:300px" ></p>
   <input type="hidden" name="type" value="add">
