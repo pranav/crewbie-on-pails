@@ -7,10 +7,10 @@ echo "<div class=\"admin\">";
 # For each user, generate the following HTML
 $users = loadUsers();
 foreach($users as $user){
-  $achievements = implode(",", $user->achievements);
+  $achievements = implode(", ", $user->achievements);
 ?>
 <div class="user">
-  <h2><?=$user->name?></h2>
+  <h2><?=$user->name?><small><?=$achievements?></small></h2>
   <div class="progressbarouter"><div class="progressbarinner" style="width:<?=$user->points?>%"></div></div>
   <form action="/admin_process" method=POST>
   <p>Points <input type="text" name="points" value="<?=$user->points?>"></p>
