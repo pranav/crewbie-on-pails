@@ -94,4 +94,3 @@ function ldaplookup($name){
     return $name;
 }
 ?>
-
