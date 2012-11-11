@@ -2,7 +2,7 @@
 
 include('header.php');
 
-$users = loadUsers();
+$users = array_reverse(sort_by_points(loadUsers()));
 foreach($users as $user){
   $achievements = implode(', ', $user->achievements);
 ?>
