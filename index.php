@@ -5,7 +5,7 @@ include("config.php");
 
 global $mem;
 $mem = new Memcache();
-$mem->connect("localhost", 11211);
+$mem->connect(MEMCACHE_SERVER, 11211);
 # Contains most of my functions
 include("lib.php");
 
