@@ -102,13 +102,14 @@ function ldaplookup($name){
   global $mem;
   $res = $mem->get($name);
   if(!$res){
-    $users = (array)json_decode(file_get_contents("cache.json"));
-    $mem->set($name, $users[$name], 0, 0);
-    return $users[$name];
+    $search = substr(`ldapsearch -x -h cluster.ldap.ccs.neu.edu -b dc=ccs,dc=neu,dc=edu uid=$name |grep "^displayName" |sed 's/displayName: //g'`, 0, -1);
+    $mem->set($name, $search, 0, 0);
+    return $search;
   } else {
     return $res;
   }
 }
+
 
 # Sort the crewbies by points
 function sort_by_points($crewbies){
