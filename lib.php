@@ -45,7 +45,8 @@ function addUser($name, $points, $achievements = array()){
 
 # Saves the array into the datastore for users
 function saveUsers($users){
-  generateLDAPcache();
+  global $mem;
+  $mem->replace("users", $users, 0, 0);
   file_put_contents("crewbie.json", json_encode(array_map("sanitize_map", $users)));
 }
 
@@ -124,13 +125,4 @@ function cmp_points($a, $b){
     return ($a->points < $b->points) ? -1 : 1;
 }
 
-# Generate LDAP cache file in cache.json
-function generateLDAPcache(){
-  $users = loadUsers();
-  $map = array();
-  foreach($users as $user){
-    $map[$user->name] = ldaplookup($user->name);
-  }
-  file_put_contents("cache.json",json_encode(generateLDAPcache()));
-}
 ?>
